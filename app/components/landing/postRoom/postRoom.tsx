@@ -4,14 +4,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const SubmitForm = () => {
+const PostRoom = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     marketname: "",
     animatetype: "",
-    fullname: "",
-    contact1: "",
-    contact2: "",
   });
   const [responseMessage, setResponseMessage] = useState("");
 
@@ -28,7 +25,7 @@ const SubmitForm = () => {
       const response = await axios.post("./server/api/makeDoc", formData);
       setResponseMessage(response.data.id);
       document.cookie = `docId=${response.data.id}`;
-      router.push("/");
+      router.push(`./app/${response.data.id}`);
     } catch (error) {
       console.error("Error:", error);
       setResponseMessage("Something went wrong");
@@ -59,4 +56,4 @@ const SubmitForm = () => {
   );
 };
 
-export default SubmitForm;
+export default PostRoom;

@@ -1,28 +1,27 @@
-import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import "server-only"
+import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase/firebaseConfig";
 import { NextResponse } from "next/server";
 import { stringify } from "querystring";
+import { redirect } from "next/navigation";
 
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const docId = url.pathname.split('/').pop();
-    console.log(docId)
-  
-    if (!docId) {
-      return NextResponse.json({error: "doc not found"}, { status: 404})
-    }
-
+    
+    if (docId) {
     const docRef = doc(db, 'Test', docId);
     const docSnapshot = await getDoc(docRef);
 
     if (!docSnapshot.exists()) {
-      return NextResponse.json({ error: 'doc not found' }, { status: 404 });
+      console.log(`doc doesn't exist`)
+      return NextResponse.redirect(new URL('/'));
     }
-
-    // Respond with the document data
-    return NextResponse.json({ id: docSnapshot.id, ...docSnapshot.data() });
+    else {
+      return NextResponse.json({ id: docSnapshot.id, ...docSnapshot.data() });
+    }
+  }
   } catch (error) {
     console.error('Error fetching data from Firestore:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
