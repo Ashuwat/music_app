@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     try {
       const formData = await req.json()
       const docRef = await addDoc(collection(db, "Test"), {
-        name: formData.marketname,
+        url: formData.url,
         animatetype: formData.animatetype,
       });
       // Respond with the document data

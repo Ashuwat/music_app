@@ -1,85 +1,55 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./styles.module.css";
-import Sidebar from "@/app/components/app/sidebar/sidebar";
-import MainComp from "@/app/components/app/main/main";
-import SettingsPage from "@/app/components/app/settings/settings";
-import { useRouter } from "next/navigation";
+import MainComp from "../../components/app/main/main";
+import SettingsPage from "../../components/app/settings/settings";
+import SideBar from "../../components/app/sidebar/sidebar";
+import TaskBar from "../../components/app/taskbar/taskbar";
+import { useEffect, useState } from "react";
 import {
-  setSidebarHidden,
-  setSidebarVisible,
-} from "@/app/functions/jsResponsive/sidebars/handleResize";
-import TaskBar from "@/app/components/app/taskbar/taskbar";
-import openCloseBar from "@/app/functions/keyboardHotkey";
+  hoverOver,
+  sidebarHover,
+} from "../../functions/jsResponsive/sidebars/hoverOver";
+import { useRouter } from "next/navigation";
+import { Data } from "../../types/fetchedData";
+
+interface data {
+  data: Data;
+}
 
 const FetchData = ({ params }: { params: { docId: string } }) => {
-  const router = useRouter();
-  const [data, setData] = useState<any[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  //'true' = sidebar is open
-  //'false' = sidebar is false
-
+  const [data, setData] = useState<data>();
   const docId = params.docId;
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (docId) {
           const response = await fetch(`../../server/api/getData/${docId}`);
-          console.log(response);
-          if (!response.ok) {
-            console.log("invalid docId");
-          }
           const result = await response.json();
-          setData(result);
+          if (result.status === 503) {
+            router.push("/");
+          } else {
+            setData(result);
+          }
         } else {
           return "no docId";
         }
       } catch (error) {
-        setError("Failed to fetch data");
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
   }, [docId]);
 
-  //resize
   useEffect(() => {
-    const handleResize = () => {
-      if (window.matchMedia("(max-width: 1200px)").matches) {
-        setSidebarVisible();
-      } else {
-        setSidebarHidden();
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    hoverOver();
+    sidebarHover();
   }, []);
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const moveEntire = () => {
-    // console.log("button clicked");
-    setIsOpen((prev) => !prev);
-  };
-
-  openCloseBar((event: KeyboardEvent) => {
-    if (event.ctrlKey && event.key === "v") {
-      event.preventDefault();
-      moveEntire();
-    }
-  });
-
-  if (error) {
-    return (
-      <>
-        <p>{error}</p>
-      </>
-    );
+  if (typeof data === undefined) {
+    return <>Loading...</>;
   }
 
   return (
@@ -87,7 +57,7 @@ const FetchData = ({ params }: { params: { docId: string } }) => {
       <main className={styles._}>
         <div id="sidebar" className={styles.sidebar}>
           <div id="sidebar_inside" className={styles.sidebar_inside}>
-            <Sidebar />
+            <SideBar data={data} />
           </div>
         </div>
         <div id="main" className={styles.main}>
@@ -100,12 +70,7 @@ const FetchData = ({ params }: { params: { docId: string } }) => {
             <SettingsPage />
           </div>
         </div>
-        <div
-          id="taskbar"
-          className={`${styles.taskbar} ${isOpen ? styles.open : ""}`}
-        >
-          <TaskBar />
-        </div>
+        <TaskBar />
       </main>
     </>
   );

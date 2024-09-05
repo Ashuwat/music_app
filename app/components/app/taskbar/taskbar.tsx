@@ -1,11 +1,34 @@
-import openCloseBar from "@/app/functions/keyboardHotkey";
+"use client";
+import openCloseBar from "../../../functions/keyboardHotkey";
 import styles from "./styles.module.css";
 import { useState } from "react";
 
 const TaskBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const moveEntire = () => {
+    // console.log("button clicked");
+    setIsOpen((prev) => !prev);
+  };
+
+  openCloseBar((event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === "v") {
+      event.preventDefault();
+      moveEntire();
+    }
+  });
+
   return (
     <>
-      <div>asdf</div>
+      <div
+        id="taskbar"
+        className={`${styles.entire} ${isOpen ? styles.open : ""}`}
+      >
+        <button onClick={moveEntire}>asdf</button>
+        <div className={styles.taskbar} style={{ background: "black" }}>
+          asdf
+        </div>
+      </div>
     </>
   );
 };

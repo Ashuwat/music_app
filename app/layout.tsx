@@ -1,5 +1,8 @@
+import "server-only";
 import type { Metadata } from "next";
 import "./globals.css";
+import { Suspense } from "react";
+import LoadingGlobal from "./loading";
 
 export const metadata: Metadata = {
   title: "A Music App",
@@ -14,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{ margin: "0px" }}>{children}</body>
+      <Suspense fallback={<LoadingGlobal />}>
+        <body style={{ margin: "0px" }}>{children}</body>
+      </Suspense>
     </html>
   );
 }

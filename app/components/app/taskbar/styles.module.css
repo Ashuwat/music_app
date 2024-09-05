@@ -1,0 +1,27 @@
+.entire {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    bottom: 40px;
+    margin: 0px;
+    padding: 0px;
+    transition-duration: 100ms;
+}
+
+.taskbar {
+    border-radius: 20px;
+    height: 80px;
+    width: 85%;
+    border: 1px solid red;
+    background: black;
+}
+
+
+.open {
+    transform: translateY(122px);
+    transition-duration: 200ms;
+}

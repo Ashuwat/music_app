@@ -19,19 +19,13 @@
     border-radius: 20px;
     /* border: 1px solid red; */
     /* width: 0%; */
-    display: none   ;
+    /* display: none; */
     height: 98%;
     /* min-height: 600px; */
     /* min-width: 0px; */
     transition-duration: 150ms;
     background: linear-gradient(rgb(108, 61, 58),rgb(108, 61, 58, 0.7),rgb(50,50,50,0.9));
     margin: 00px 5px 00px 10px;
-}
-
-@media (max-width: 1200px) {
-    .sidebar {
-        display: none; /* or another value */
-    }
 }
 
 .sidebar_inside {
@@ -69,39 +63,13 @@
     transition-duration: 150ms;
     padding: 0px;
     margin: 10px;
+    width: 100%;
 }
 
 .main_inside {
     /* border: 1px solid blue; */
     height: 100%;
     padding: 0px
-}
-
-/*  */
-/* taskbar */
-/*  */
-
-.taskbar {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    width: 85%;
-
-    border: 1px solid red;
-    z-index: 10;
-    bottom: 40px;
-    height: 80px;
-    margin: 0px;
-    padding: 0px;
-    background: black;
-    transition-duration: 100ms;
-}
-
-.open {
-    transform: translateY(122px);
-    transition-duration: 200ms;
 }
 
 @media all and (max-width: 1500px) {

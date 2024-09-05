@@ -6,6 +6,7 @@ const setSidebarVisible = (): void => {
     const main = document.getElementById('main')
     
     if (sidebar && sidebar_inside && main) {
+    sidebar.style.left = '0px'
     sidebar.style.width = '0px';
     sidebar.style.minWidth = '0px';
     sidebar.style.margin = '0px 0px 0px 10px'

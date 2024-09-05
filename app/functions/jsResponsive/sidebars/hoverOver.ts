@@ -1,42 +1,31 @@
-
 function hoverOver() {
-    document.addEventListener("mousemove", function (event) {
-    const sidebar = document.getElementById("sidebar");
-    const sidebar_inside = document.getElementById('sidebar_inside')
-    const main = document.getElementById('main')
-        
-      if (sidebar && sidebar_inside && main) {
-        if (event.clientX < 25) {
-          sidebar.style.width = "34%";
-        //   sidebar.style.minWidth = '500px'
-          sidebar_inside.style.display = "block";
+  document.addEventListener("mousemove", function (event) {
+      const sidebar = document.getElementById("sidebar");
+      const sidebarInside = document.getElementById('sidebar_inside');
+      const main = document.getElementById('main');
 
-      // main.style.width = "66%";
-        } else {
-          sidebar_inside.style.display = "none";
-          sidebar.style.width = '0%'
-          sidebar.style.minWidth = '0%'
-          main.style.width = '100%'
-        }
+      if (sidebar && sidebarInside && main) {
+          // Check if the mouse is within the sidebar or to the right of the sidebar (to hide)
+          const mouseX = event.clientX;
+        //   const sidebarRect = sidebar.getBoundingClientRect();
+
+          if (mouseX > 25) {
+              sidebarInside.style.display = "none";
+              sidebar.style.width = '0px';
+              sidebar.style.minWidth = '0px';
+              // main.style.width = '100%';
+          } else {
+              sidebar.style.width = "34%";
+              sidebar.style.minWidth = '400px';
+              sidebarInside.style.display = "block";
+              // main.style.width = '66%';
+          }
       }
-    });
-  }
+  });
+}
 
+function sidebarHover() {
+    //make it so that when the sidebar gets hovered
+}
 
-  function sidebarHover() {
-    document.addEventListener('mouseover', () => {
-        const sidebar = document.getElementById("sidebar");
-        const sidebar_inside = document.getElementById('sidebar_inside')
-        if (sidebar && sidebar_inside) {
-            sidebar.style.width = "34%";
-            // sidebar.style.minWidth = '500px'
-            sidebar_inside.style.display = "block";
-            return true;
-        }
-        else {
-            return false;
-        }
-    })
-  }
-
-  export {hoverOver, sidebarHover}
+export { hoverOver, sidebarHover };

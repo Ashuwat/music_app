@@ -1,9 +1,14 @@
 import PostRoom from "./components/landing/postRoom/postRoom";
 
-export default function landingPage() {
+const LandingPage = () => {
+  // const something = getAverageColor(4);
   return (
     <>
-      <PostRoom />
+      <div>
+        <PostRoom />
+      </div>
     </>
   );
-}
+};
+
+export default LandingPage;

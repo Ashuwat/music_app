@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -7,28 +6,28 @@ import { useRouter } from "next/navigation";
 const PostRoom = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    marketname: "",
+    url: "",
     animatetype: "",
   });
-  const [responseMessage, setResponseMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.id]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("./server/api/makeDoc", formData);
-      setResponseMessage(response.data.id);
+      const response = await axios.post(
+        "../../../server/api/makeDoc",
+        formData
+      );
       document.cookie = `docId=${response.data.id}`;
-      router.push(`./app/${response.data.id}`);
+      router.push(`/app/${response.data.id}`);
     } catch (error) {
       console.error("Error:", error);
-      setResponseMessage("Something went wrong");
     }
   };
 
@@ -36,22 +35,21 @@ const PostRoom = () => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        name="marketname"
-        value={formData.marketname}
+        id="url"
+        value={formData.url}
         onChange={handleChange}
         placeholder="Market Name"
         required
       />
       <input
         type="text"
-        name="animatetype"
+        id="animatetype"
         value={formData.animatetype}
         onChange={handleChange}
         placeholder="Animate Type"
         required
       />
       <button type="submit">Submit</button>
-      {responseMessage}
     </form>
   );
 };

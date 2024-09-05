@@ -13,8 +13,7 @@ export async function POST(request: Request) {
         return NextResponse.json({error: "doc not found"})
       }
 
-      const {something} = await request.json();
-      console.log(something)
+      const something = await request.json();
 
       await addDoc(collection(db, 'Test', docId), {
         something: something
