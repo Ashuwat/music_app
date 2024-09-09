@@ -1,6 +1,6 @@
 import "server-only"
 import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase/firebaseConfig";
+import { db } from "../../../firebaseConfig";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -11,7 +11,7 @@ export async function GET(request: Request) {
       const docRef = doc(db, 'Test', docId);
       const docSnap = await getDoc(docRef);
       if (!docSnap.exists()) {
-        return NextResponse.json({status: 503})
+        return NextResponse.json({ error: 'Internal Database Error'}, {status: 503})
       }
       return NextResponse.json({id: docSnap.id , ...docSnap.data()})
     }

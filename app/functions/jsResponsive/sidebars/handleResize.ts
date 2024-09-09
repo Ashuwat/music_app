@@ -1,6 +1,6 @@
 //client
 
-const setSidebarVisible = (): void => {
+const setSidebarHidden = (): void => {
     const sidebar = document.getElementById('sidebar');
     const sidebar_inside = document.getElementById('sidebar_inside')
     const main = document.getElementById('main')
@@ -20,14 +20,14 @@ const setSidebarVisible = (): void => {
     }
 }
 
-const setSidebarHidden = (): void => {
+const setSidebarVisible = (): void => {
     const sidebar = document.getElementById('sidebar');
     const sidebar_inside = document.getElementById('sidebar_inside')
     const main = document.getElementById('main')
 
     if (sidebar && sidebar_inside && main) {
     sidebar.style.width = '';
-    sidebar.style.minWidth = '300px';
+    sidebar.style.minWidth = '';
     sidebar.style.margin = '0px 0px 0px 0px'
     sidebar.style.position = 'relative'
     sidebar.style.zIndex = '';

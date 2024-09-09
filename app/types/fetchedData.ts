@@ -1,6 +1,7 @@
-export type Data = {
-    data: {
-        url: string| undefined;
+export type DataType = {
+    Data: {
+        url: string | undefined;
         animatetype:string | undefined;
+        groupCode: number | undefined;
     }
 }

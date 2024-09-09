@@ -1,5 +1,5 @@
 function LoadingGlobal() {
-    return "Loading... from loading.ts"
+    return "Loading... document"
 }
 
 export default LoadingGlobal

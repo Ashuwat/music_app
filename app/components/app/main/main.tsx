@@ -2,12 +2,6 @@
 import React, { useEffect, useState } from "react";
 import HomeWidget from "./widgets/home/homeWidget";
 import styles from "./styles.module.css";
-import {
-  sidebarHover,
-  hoverOver,
-} from "../../../functions/jsResponsive/sidebars/hoverOver";
-import SettingsPage from "../settings/settings";
-import settingsControl from "../../../functions/jsResponsive/sidebars/settingsPage";
 import SettingsButton from "../../UI/settingsButton/settingsButton";
 
 const MainComp = () => {

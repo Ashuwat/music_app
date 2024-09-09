@@ -31,6 +31,7 @@
 .sidebar_inside {
     /* display: none; */
     height: 100%;
+    transition-duration: 100ms;
 }
 
 /*  */
@@ -39,12 +40,17 @@
 
 .settings{
     width: 0px;
+    display: fixed;
+    min-width: 0px;
     height: 97%;
     transition-duration: 100ms;
     border-radius: 20px;
     /* border: 1px solid blue */
 }
 .settings_inner{
+    width: 0px;
+    min-width: none;
+    display: none;
     height: 100%;
     width: 100%;
 }
@@ -72,7 +78,7 @@
     padding: 0px
 }
 
-@media all and (max-width: 1500px) {
+@media all and (min-width: 0px) {
     .sidebar {
         width: 0px;
         min-width: 0px;
