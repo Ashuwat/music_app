@@ -1,14 +1,18 @@
-import { DataType } from "../../../types/fetchedData";
+import { DataType } from "../../../types/types";
 import SettingsButton from "../../UI/settingsButton/settingsButton";
 import styles from "./styles.module.css";
 
-const SettingsPage: React.FC<DataType> = ({ Data }) => {
+type Data = {
+  data: DataType;
+};
+
+const SettingsPage: React.FC<Data> = (data) => {
   return (
     <>
       <div className={styles._}>
         <div className={styles.inner}>
           <pre>
-            <h1>{Data.groupCode}</h1>
+            <h1>{data.data.groupCode}</h1>
             {`asdkjlfhas
 fasd
 fasdf
@@ -30,21 +34,6 @@ asdfsdafasdfsdafsadfasd
 async function asdf`}
           </pre>
           <SettingsButton />
-          <pre>
-            {`
-sadfasd
-fsad
-fasd
-fsd
-af
-sda
-f
-as
-dfsa
-f
-sdfdsfdfdsa
-                `}
-          </pre>
         </div>
       </div>
     </>

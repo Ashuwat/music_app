@@ -22,7 +22,7 @@ const PostRoom = () => {
     e.preventDefault();
     try {
       const response = await axios.post("../../../api/makeDoc", formData);
-      document.cookie = `docId=${response.data.id}`;
+      document.cookie = `docId=${response.data.id}; SameSite=Strict`;
       router.push(`/app/${response.data.id}`);
       setData(response.data);
     } catch (error) {

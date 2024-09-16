@@ -9,6 +9,7 @@ const setSidebarHidden = (): void => {
     sidebar.style.left = '0px'
     sidebar.style.width = '0px';
     sidebar.style.minWidth = '0px';
+    sidebar.style.maxWidth = '0%'
     sidebar.style.margin = '0px 0px 0px 10px'
     sidebar.style.display = 'fixed'
     sidebar.style.position = 'absolute'
@@ -28,6 +29,7 @@ const setSidebarVisible = (): void => {
     if (sidebar && sidebar_inside && main) {
     sidebar.style.width = '';
     sidebar.style.minWidth = '';
+    sidebar.style.maxWidth = '100%';
     sidebar.style.margin = '0px 0px 0px 0px'
     sidebar.style.position = 'relative'
     sidebar.style.zIndex = '';

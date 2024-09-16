@@ -1,11 +1,8 @@
 "use client";
 import settingsControl from "../../../functions/jsResponsive/sidebars/settingsPage";
-import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
-
-sessionStorage.setItem("settingsPage", "false");
 
 const SettingsButton = () => {
+  sessionStorage.setItem("settingsPage", "false");
   function settingsToggle() {
     const state = sessionStorage.getItem("settingsPage");
     if (state === "true") {

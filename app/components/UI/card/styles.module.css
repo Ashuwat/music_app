@@ -1,0 +1,16 @@
+.card {
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+    background: rgb(200,200,200,0.08);
+    /* padding: 10px; */
+    transition-duration: 100ms;
+    cursor: pointer;
+}
+
+.card:hover {
+    background: rgb(200,200,200,0.15);
+    transition-duration: 100ms;
+    transform: scale(1.01);
+}
+

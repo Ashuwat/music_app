@@ -12,7 +12,7 @@ const TaskBar = () => {
   };
 
   openCloseBar((event: KeyboardEvent) => {
-    if (event.ctrlKey && event.key === "v") {
+    if (event.ctrlKey && event.key === "s") {
       event.preventDefault();
       moveEntire();
     }

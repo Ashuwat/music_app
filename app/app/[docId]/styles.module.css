@@ -16,6 +16,7 @@
 
 .sidebar {
     align-items: center;
+    overflow: hidden;
     border-radius: 20px;
     /* border: 1px solid red; */
     /* width: 0%; */
@@ -24,7 +25,9 @@
     /* min-height: 600px; */
     /* min-width: 0px; */
     transition-duration: 150ms;
-    background: linear-gradient(rgb(108, 61, 58),rgb(108, 61, 58, 0.7),rgb(50,50,50,0.9));
+    background-size: cover;
+    background: red;
+    background-repeat: no-repeat no-repeat;
     margin: 00px 5px 00px 10px;
 }
 
@@ -32,6 +35,40 @@
     /* display: none; */
     height: 100%;
     transition-duration: 100ms;
+}
+
+.justBackground {
+    display: block;
+    position: absolute;
+    /* border: 1px solid red; */
+    background-size:cover;
+    -webkit-filter: blur(200px);
+    filter: blur(200px);
+    /* background: yellow; */
+    z-index: -10;
+    background-repeat: no-repeat no-repeat;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    transition-duration: 100ms;
+    opacity: 1;
+}
+
+.noImage {
+    display: block;
+    position: absolute;
+    /* border: 1px solid red; */
+    background-size:cover;
+    -webkit-filter: blur(200px);
+    filter: blur(200px);
+    /* background: yellow; */
+    z-index: -10;
+    background-repeat: no-repeat no-repeat;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    transition-duration: 100ms;
+    opacity: 1;
 }
 
 /*  */
@@ -69,13 +106,16 @@
     transition-duration: 150ms;
     padding: 0px;
     margin: 10px;
-    width: 100%;
+    /* width: 100%; */
+    z-index: 0;
+    overflow: hidden;
 }
 
 .main_inside {
     /* border: 1px solid blue; */
     height: 100%;
-    padding: 0px
+    width: 100%;
+    padding: 0px;
 }
 
 @media all and (min-width: 0px) {

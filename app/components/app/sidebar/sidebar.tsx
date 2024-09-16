@@ -5,11 +5,16 @@ import {
   setSidebarVisible,
   setSidebarHidden,
 } from "../../../functions/jsResponsive/sidebars/handleResize";
-import { DataType } from "../../../types/fetchedData";
+import { DataType } from "../../../types/types";
 import { getCookie } from "../../../functions/getCookie";
 import FetchData from "../../../app/[docId]/page";
+import { error } from "console";
 
-const SideBar: React.FC<DataType> = ({ Data }) => {
+type Data = {
+  data: DataType;
+};
+
+const SideBar: React.FC<Data> = (data) => {
   const [url, setURL] = useState<string>("");
   // resize
   useEffect(() => {
@@ -31,7 +36,7 @@ const SideBar: React.FC<DataType> = ({ Data }) => {
     setURL(e.target.value);
   };
 
-  const docId = getCookie("docId");
+  const docId = sessionStorage.getItem("docId");
   const sendPostReq = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setURL("");
@@ -42,6 +47,7 @@ const SideBar: React.FC<DataType> = ({ Data }) => {
         body: JSON.stringify({ docId, url }),
       });
       if (response) {
+        const something = await response.json();
         console.log(response.status);
         sessionStorage.setItem("result", response.url);
       } else {
@@ -60,8 +66,8 @@ const SideBar: React.FC<DataType> = ({ Data }) => {
     <>
       <div className={styles._}>
         <div className={styles.inner}>
-          <pre>{JSON.stringify(Data)}</pre>
-          <img src={Data.url} alt="Image" />
+          <pre>{JSON.stringify(data.data)}</pre>
+          <img src={data.data.url} alt="Image" />
           <form onSubmit={sendPostReq}>
             <input
               id="url"
