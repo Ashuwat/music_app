@@ -15,12 +15,12 @@ function sidebarHover() {
             const isMouseNotOnSidebar = mouseX < 25
 
             const isMouseOnSidebar = 
-                mouseX >= sidebarRect.left && mouseX <= sidebarRect.right &&
-                mouseY >= sidebarRect.top && mouseY <= sidebarRect.bottom;
+                mouseX >= sidebarRect.left && mouseX <= sidebarRect.right
+                // mouseY >= sidebarRect.top && mouseY <= sidebarRect.bottom;
 
             const isMouseOnSidebarInside = 
-                mouseX >= sidebarInsideRect.left && mouseX <= sidebarInsideRect.right &&
-                mouseY >= sidebarInsideRect.top && mouseY <= sidebarInsideRect.bottom;
+                mouseX >= sidebarInsideRect.left && mouseX <= sidebarInsideRect.right 
+                // && mouseY >= sidebarInsideRect.top && mouseY <= sidebarInsideRect.bottom;
                 if (isMouseOnSidebar || isMouseOnSidebarInside || isMouseNotOnSidebar) {
                 // console.log('state: true, open')
                 sidebar.style.width = "34%";    
