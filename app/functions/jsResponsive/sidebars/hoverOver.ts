@@ -1,7 +1,7 @@
 //client
 
 function sidebarHover() {
-    document.addEventListener("mousemove", function (event) {
+    function hoverOver( event: MouseEvent ) {
         const sidebar = document.getElementById('sidebar')
         const sidebar_inside = document.getElementById('sidebar_inside')
         const main = document.getElementById('main')
@@ -21,24 +21,26 @@ function sidebarHover() {
             const isMouseOnSidebarInside = 
                 mouseX >= sidebarInsideRect.left && mouseX <= sidebarInsideRect.right &&
                 mouseY >= sidebarInsideRect.top && mouseY <= sidebarInsideRect.bottom;
-
-            if (isMouseOnSidebar || isMouseOnSidebarInside || isMouseNotOnSidebar) {
-              sidebar.style.width = "34%";
-              sidebar.style.minWidth = '400px';
-              sidebar_inside.style.display = "block";
-              sidebar_inside.style.opacity = '1'
-
-              main.style.width = '100%';
-            } else {
-              sidebar.style.width = '0px';
-              sidebar.style.minWidth = '0px';
-              sidebar_inside.style.display = 'none'
-              sidebar_inside.style.opacity = '0'
-
-              main.style.width = '100%';
+                if (isMouseOnSidebar || isMouseOnSidebarInside || isMouseNotOnSidebar) {
+                // console.log('state: true, open')
+                sidebar.style.width = "34%";    
+                sidebar.style.minWidth = '400px';
+                sidebar_inside.style.display = "block";
+                sidebar_inside.style.opacity = '1'
+                } else {
+                // console.log('state: false, close')
+                sidebar.style.width = '0px';
+                sidebar.style.minWidth = '0px';
+                sidebar_inside.style.display = 'none'
+                sidebar_inside.style.opacity = '0'
             }
         }
-    })
+     }
+     document.addEventListener('mousemove', hoverOver)
+
+     return () => {
+        document.removeEventListener('mousemove', hoverOver)
+     }
 }
 
 export { sidebarHover };

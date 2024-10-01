@@ -1,0 +1,56 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+    background: rgb(200,200,200,0.08);
+    /* padding: 10px; */
+    transition-duration: 100ms;
+    cursor: pointer;
+}
+
+.card:hover {
+    background: rgb(200,200,200,0.15);
+    transition-duration: 100ms;
+    transform: scale(1.01);
+}
+
+.image {
+    margin-left: 5px;
+    margin-right: 5px;
+    transition-duration: 20ms;
+}
+
+.image:hover {
+    transform: scale(1.1);
+    transition-duration: 20ms;
+}
+
+.queue {
+    filter: brightness(0) invert(1);
+}
+
+.queueButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 40px;
+    width: 40px;
+
+    background: rgb(20,20,20);
+    margin-right: 5px;
+    border-radius: 10px;
+    transition-duration: 50ms;
+}
+
+.queueButton:hover .queue {
+    filter: brightness(1) invert(0)
+}
+
+.queueButton:hover {
+    background: rgb(200,200,200);
+    transition-duration: 50ms;
+}

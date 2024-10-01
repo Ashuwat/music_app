@@ -1,5 +1,5 @@
 "use client";
-import settingsControl from "../../../functions/jsResponsive/sidebars/settingsPage";
+import { settingsControl } from "../../../functions/jsResponsive/sidebars/settingsPage";
 
 const SettingsButton = () => {
   sessionStorage.setItem("settingsPage", "false");

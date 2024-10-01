@@ -4,21 +4,19 @@ import { DataType } from "../../../../../types/types";
 import spotifyFetchSearch from "../../../../../functions/spotify/spotifyFetchSearch";
 import SpotifyAuthToken from "../../../../../functions/spotify/spotifyAuthToken";
 import { queryEqual } from "firebase/firestore";
+import QueueCard from "../../../../UI/queueCard/queueCard";
 
-type data = {
-  data: DataType;
-};
 
-const HomeWidget: React.FC<data> = (Data) => {
-  const fetchData = "../../../../../functions/spotify/spotifyFetchSearch";
-  const spotifyAuth = "../../../../../functions/spotify/spotifyAuthToken";
-  const [searchdata, setSearchData] = useState();
+const HomeWidget = (Data: {data: DataType}) => {
 
   return (
     <>
       <div className={styles.main}>
-        <pre>{JSON.stringify(searchdata, null, 4)}</pre>
-        <div className={styles.widget}>something</div>
+        <p>
+          {Data.data.Queue && Data.data.Queue.map((item) => (
+            <p>{JSON.stringify(item, null, 4)}</p>
+          ))}
+        </p>
       </div>
     </>
   );

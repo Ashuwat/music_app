@@ -17,4 +17,27 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-items {
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }

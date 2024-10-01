@@ -1,5 +1,7 @@
 "use client";
-import openCloseBar from "../../../functions/keyboardHotkey";
+import KeyboardEvent, {
+  isInputOrTextFocused,
+} from "../../../functions/keyboardHotkey";
 import styles from "./styles.module.css";
 import { useState } from "react";
 
@@ -11,8 +13,8 @@ const TaskBar = () => {
     setIsOpen((prev) => !prev);
   };
 
-  openCloseBar((event: KeyboardEvent) => {
-    if (event.ctrlKey && event.key === "s") {
+  KeyboardEvent((event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === "s" && !isInputOrTextFocused()) {
       event.preventDefault();
       moveEntire();
     }

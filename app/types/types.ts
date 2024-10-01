@@ -1,7 +1,19 @@
 export type DataType = {
-    url: string | undefined;
-    animatetype:string | undefined;
-    groupCode: number | undefined;
+    current: {
+        url: string;
+        name:string;
+        artists: number;
+        videoId: string;
+    },
+    Queue: {
+        url: string;
+        name:string;
+        artists: string;
+        index: number;
+    }[],
+
+    groupCode: string,
+    username: string
 }
 
 export type SpotifyJsonType = {
@@ -16,5 +28,27 @@ export type SpotifyJsonType = {
     explicit: boolean;
 }
 
-//FIX THIS TYPE PLSS
+//FIX THIS TYPE PLSS (actually I don't think i need this wait)
 export type Spotify = any
+
+export type VideoItems = {
+    id: {
+        videoId: string;
+    };
+    snippet: {
+        title: string;
+        thumbnails: {
+            default: {
+                url: string;
+            };
+    };
+  };
+}
+
+export type RGB = 
+    [
+        number: Number, 
+        number: Number, 
+        number: Number, 
+        number: Number
+    ]

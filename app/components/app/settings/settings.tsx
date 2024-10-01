@@ -6,7 +6,10 @@ type Data = {
   data: DataType;
 };
 
-const SettingsPage: React.FC<Data> = (data) => {
+const SettingsPage: React.FC<Data> = (
+  data,
+  color: [number, number, number, number]
+) => {
   return (
     <>
       <div className={styles._}>

@@ -6,8 +6,6 @@
     height: 100%;
 
     /* scrollbar */
-    scrollbar-color: gray transparent;
-    scrollbar-width: thin;
 }
 
 .input {
@@ -33,7 +31,7 @@
     transition-duration: 50ms;
 }
 
-.input:focus {
+.input:focus{
     border: 2px solid gray;
     transform: scale(1.01);
  }
@@ -41,11 +39,14 @@
 .searchResultComp {
     display: none;
     position: absolute;
-    top: 8%;
-    height: 500px;
+    top: 100px;
+    max-height: 500px;
+    min-height: 80%;
     /* border: 1px solid blue; */
     width: 700px;
+    /* max-width: 100vw; */
     opacity: 0;
+    z-index: 10;
 }
 
 .input:focus + .searchResultComp, .searchResultComp:active {

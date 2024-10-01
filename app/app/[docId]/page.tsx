@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { use } from "react";
 import styles from "./styles.module.css";
 import MainComp from "../../components/app/main/main";
 import SettingsPage from "../../components/app/settings/settings";
@@ -11,17 +11,21 @@ import { useRouter } from "next/navigation";
 import { DataType } from "../../types/types";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-import {
-  clickOffSearch,
-  focusOnSearch,
-  something,
-} from "../../functions/jsResponsive/search/searchResult";
+import { FastAverageColor } from "fast-average-color";
+import YouTubePlayer from "../../functions/youtube/youtubeIframe";
+import getColor from "../../functions/getColor";
 
 const App = ({ params }: { params: { docId: string } }) => {
-  const [Data, setData] = useState<DataType | undefined>();
+  const [Data, setData] = useState<DataType>();
   const [url, setUrl] = useState<string | null>("");
+  const [rgb, setRgb] = useState<[number, number, number, number]>([
+    50, 50, 50, 20,
+  ]);
   const router = useRouter();
   const docId = params.docId;
+  useEffect(() => {
+    sessionStorage.setItem("docId", docId);
+  }, [useRouter()]);
 
   // myCode
 
@@ -39,12 +43,8 @@ const App = ({ params }: { params: { docId: string } }) => {
   // }, [docId]);
 
   //Realtime Updates - works
-
   useEffect(() => {
     if (!docId) return;
-    if (docId) {
-      sessionStorage.setItem("docId", docId);
-    }
     const docRef = doc(db, "Test", docId);
     const unsubscribe = onSnapshot(
       docRef,
@@ -52,6 +52,7 @@ const App = ({ params }: { params: { docId: string } }) => {
         const fetchedData = doc.data();
         if (fetchedData) {
           setData(fetchedData as DataType);
+          console.log(fetchedData);
         } else {
           console.error("No data");
           router.push("/app/not-found");
@@ -90,11 +91,28 @@ const App = ({ params }: { params: { docId: string } }) => {
   //all js/css things get called here
   useEffect(() => {
     // fetchData();
+    // something();
     sidebarHover();
-    something();
-    focusOnSearch();
-    clickOffSearch();
+    // focusOnSearch();
+    // clickOffSearch();
   }, [docId]);
+
+  //avg color of img
+  useEffect(() => {
+    if (Data) {
+      const getRGB = async () => {
+        try {
+          const rgb = await getColor(Data.current.url);
+          setRgb(rgb);
+          console.log("this worked");
+        } catch {
+          console.log("no data"); 
+        }
+      };
+
+      getRGB();
+    }
+  }, [Data?.current.url]);
 
   if (!Data) {
     return <>Data has not loaded in yet</>;
@@ -102,17 +120,27 @@ const App = ({ params }: { params: { docId: string } }) => {
 
   return (
     <>
+      <YouTubePlayer videoId={Data?.current?.videoId} />
+      <div id="overlay" className={styles.overlay}></div>
       <main className={styles._}>
-        <div id="sidebar" className={styles.sidebar}>
-          <div
-            style={{ backgroundImage: `url(${Data.url})` }}
-            className={styles.justBackground}
-          />
+        <div
+          id="sidebar"
+          style={{
+            background: `linear-gradient(rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]}),  rgb(5, 5, 5)`,
+          }}
+          className={styles.sidebar}
+        >
           <div id="sidebar_inside" className={styles.sidebar_inside}>
             <SideBar data={Data} />
           </div>
         </div>
-        <div id="main" className={styles.main}>
+        <div
+          id="main"
+          style={{
+            background: `linear-gradient(rgb(35,35,35), rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0.2), rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`,
+          }}
+          className={styles.main}
+        >
           <div id="main_inside" className={styles.main_inside}>
             <MainComp data={Data} />
           </div>

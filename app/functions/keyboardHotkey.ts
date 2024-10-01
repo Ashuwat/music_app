@@ -1,7 +1,15 @@
 // useClientSideEffect.ts
 import { useEffect } from 'react';
 
-const openCloseBar = (callback: (event: KeyboardEvent) => void) => {
+export const isInputOrTextFocused = () => {
+  const activeElement = document.activeElement;
+  return (
+    activeElement instanceof HTMLInputElement ||
+    activeElement instanceof HTMLTextAreaElement
+  );
+};
+
+const KeyboardEvent = (callback: (event: KeyboardEvent) => void) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       callback(event);
@@ -14,4 +22,4 @@ const openCloseBar = (callback: (event: KeyboardEvent) => void) => {
   }, [callback]);
 };
 
-export default openCloseBar;
+export default KeyboardEvent;

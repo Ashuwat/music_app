@@ -1,0 +1,62 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background: rgb(250,250,250, 0.4);
+    color: rgb(20,20,20);
+
+    padding: 5px;
+    margin: 1%;
+    border-radius: 10px;
+    width: 96%;
+    transition-duration: 100ms;
+    cursor: pointer;
+}
+
+.main:hover {
+    transition-duration: 200ms;
+    background: rgb(10,10,10, 0.6);
+    color: white;
+}
+
+.main:hover .trashIcon {
+    background: rgb(25,25,25);
+}
+
+.image {
+    border-radius: 10px;
+    transition-duration: 100ms;
+}
+
+.p {
+    margin: 0px;
+    padding: 0px
+}
+
+.name {
+    font-size: 15px;
+    /* font-weight: bold; */
+}
+
+.artists {
+    font-size: 10px;
+}
+
+.trashIcon {
+    display: flex;
+    justify-content: center;
+    align-Items: center;
+    margin: 8px;
+    background: rgb(250,250,250);
+    border-Radius: 5px;
+    width: 30px;
+    height: 30px;
+    transition-duration: 100ms;
+}
+
+.main:hover .trashIcon:hover {
+    transform: scale(1.1);
+    background: rgb(188, 188, 188);
+    transition-duration: 100ms;
+}

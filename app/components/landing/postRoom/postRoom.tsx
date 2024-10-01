@@ -7,7 +7,7 @@ const PostRoom = () => {
   const [data, setData] = useState<any>();
   const router = useRouter();
   const [formData, setFormData] = useState({
-    url: "",
+    username: "",
     animatetype: "",
   });
 
@@ -35,10 +35,10 @@ const PostRoom = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          id="url"
-          value={formData.url}
+          id="username"
+          value={formData.username}
           onChange={handleChange}
-          placeholder="url"
+          placeholder="username"
           required
         />
         <input

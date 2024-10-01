@@ -4,15 +4,19 @@ import {db} from '../../firebaseConfig'
 import { NextResponse } from "next/server";
 import { randomInt } from "crypto";
 
+//NEEDS FORMDATA - USERNAME AND URL
 export async function POST(req: Request) {
     try {
       const randomGroupCode: number = randomInt(111111, 999999);
 
       const formData = await req.json()
       const docRef = await addDoc(collection(db, "Test"), {
-        url: formData.url,
-        animatetype: formData.animatetype,
-        groupCode: randomGroupCode
+        username: formData.username,
+        groupCode: randomGroupCode,
+        current: {
+          url: '0'
+        }
+        
       });
       // Respond with the document data
       return NextResponse.json({id: docRef.id, groupCode: randomGroupCode});
