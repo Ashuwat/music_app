@@ -47,7 +47,7 @@ const Card = ({
           <Image
             style={{ borderRadius: "10px" }}
             src={data.album.images[0].url}
-            alt={data.name}
+            alt={'N/A Image'}
             width={50}
             height={50}
           />
@@ -66,7 +66,7 @@ const Card = ({
             className={styles.queue}
             onClick={(e) => queue(e)}
             src={QueueIcon}
-            alt="Queue Icon"
+            alt="Queue"
             width={30}
             height={30}
           />

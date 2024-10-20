@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
-import { validateHeaderName } from "http";
 
 const CD = ({ url, state }: { url: string; state: boolean }) => {
   const defaultUrl =
@@ -28,7 +27,7 @@ const CD = ({ url, state }: { url: string; state: boolean }) => {
             <Image
               className={styles.image}
               src={validUrl}
-              alt={url}
+              alt={`${url} - Image`}
               width={width}
               height={height}
             />
@@ -38,7 +37,7 @@ const CD = ({ url, state }: { url: string; state: boolean }) => {
           <Image
             className={styles.image}
             src={validUrl}
-            alt={url}
+            alt={`${url} - Image`}
             width={width}
             height={height}
           />
