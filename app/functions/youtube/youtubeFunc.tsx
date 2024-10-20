@@ -60,7 +60,7 @@ const onPlayerReady = async (event: YT.PlayerEvent) => {
 };
 
 const onPlayerStateChange = (event: YT.OnStateChangeEvent) => {
-  // event.target.getPlayerState();
+  event.target.getPlayerState();
 };
 
 export const loadVideoById = (newVideoId: string) => {
@@ -72,7 +72,8 @@ export const loadVideoById = (newVideoId: string) => {
 export const getMaxDuration = () => {
   if (player) {
     try {
-      player.getDuration();
+      const duration = player.getDuration();
+      return duration
     } catch (error) {
       console.log("Failed to get Duration", error);
     }

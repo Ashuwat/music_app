@@ -1,0 +1,20 @@
+.svg {
+    border-radius: "50%";
+    filter: brightness(0) invert(0.5);
+}
+
+.svg:hover {
+    transform: scale(1.05);
+}
+
+.main {
+    display: flex;
+    justify-content: "center";
+    align-items: "center";
+    background: black;
+    border-radius: 50%;
+}
+
+.main:hover {
+    background:rgb(80,80,80,0.3);
+}

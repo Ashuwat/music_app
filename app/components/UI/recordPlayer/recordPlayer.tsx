@@ -8,6 +8,7 @@ import powerIcon from "../../svgs/power.svg";
 const RecordPlayer = ({ data }: { data: DataType }) => {
   const [state, setState] = useState<boolean>(false);
   const [url, setUrl] = useState<string>("");
+
   const setStateFunc = () => {
     if (state === true) {
       setState(false);

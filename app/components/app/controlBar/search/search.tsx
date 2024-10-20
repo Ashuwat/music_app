@@ -31,6 +31,7 @@ const Search = (data: { data: DataType }) => {
     }, 500),
     []
   );
+
   //call spotify api to retrieve search
   const querySearch = async (q: string) => {
     const response = await spotifyFetchSearch(q);
@@ -42,7 +43,7 @@ const Search = (data: { data: DataType }) => {
 
   //get the query after dom loaded
   useEffect(() => {
-    console.log(query);
+    // console.log(query);
     if (query && query !== "") {
       debouncedSearch(query);
     }

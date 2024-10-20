@@ -6,13 +6,13 @@ import SettingsPage from "../../components/app/settings/settings";
 import SideBar from "../../components/app/sidebar/sidebar";
 import TaskBar from "../../components/app/taskbar/taskbar";
 import { useEffect, useState } from "react";
-import { sidebarHover } from "../../functions/jsResponsive/sidebars/hoverOver";
+import { sidebarHover, sidebarNormal } from "../../functions/jsResponsive/sidebars/hoverOver";
 import { useRouter } from "next/navigation";
 import { DataType } from "../../types/types";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { FastAverageColor } from "fast-average-color";
-import YouTubePlayer from "../../functions/youtube/youtubeIframe";
+import YouTubePlayer from "../../functions/youtube/youtubeFunc";
 import getColor from "../../functions/getColor";
 
 const App = ({ params }: { params: { docId: string } }) => {
@@ -52,7 +52,7 @@ const App = ({ params }: { params: { docId: string } }) => {
         const fetchedData = doc.data();
         if (fetchedData) {
           setData(fetchedData as DataType);
-          console.log(fetchedData);
+          // console.log(fetchedData);
         } else {
           console.error("No data");
           router.push("/app/not-found");
@@ -92,7 +92,8 @@ const App = ({ params }: { params: { docId: string } }) => {
   useEffect(() => {
     // fetchData();
     // something();
-    sidebarHover();
+    // sidebarHover(true)
+    // sidebarNormal(true)
     // focusOnSearch();
     // clickOffSearch();
   }, [docId]);
@@ -106,7 +107,7 @@ const App = ({ params }: { params: { docId: string } }) => {
           setRgb(rgb);
           console.log("this worked");
         } catch {
-          console.log("no data"); 
+          console.log("no data");
         }
       };
 
@@ -150,7 +151,7 @@ const App = ({ params }: { params: { docId: string } }) => {
             <SettingsPage data={Data} />
           </div>
         </div>
-        <TaskBar />
+        <TaskBar data={Data}/>
       </main>
     </>
   );

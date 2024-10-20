@@ -2,7 +2,7 @@ export type DataType = {
     current: {
         url: string;
         name:string;
-        artists: number;
+        artists: string;
         videoId: string;
     },
     Queue: {

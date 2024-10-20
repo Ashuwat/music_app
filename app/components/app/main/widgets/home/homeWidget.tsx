@@ -6,17 +6,12 @@ import SpotifyAuthToken from "../../../../../functions/spotify/spotifyAuthToken"
 import { queryEqual } from "firebase/firestore";
 import QueueCard from "../../../../UI/queueCard/queueCard";
 
-
-const HomeWidget = (Data: {data: DataType}) => {
-
+const HomeWidget = (Data: { data: DataType }) => {
   return (
     <>
       <div className={styles.main}>
-        <p>
-          {Data.data.Queue && Data.data.Queue.map((item) => (
-            <p>{JSON.stringify(item, null, 4)}</p>
-          ))}
-        </p>
+        {Data.data.Queue &&
+          Data.data.Queue.map((item, key) => <p key={key}>{JSON.stringify(item, null, 4)}</p>)}
       </div>
     </>
   );

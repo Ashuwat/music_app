@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     return NextResponse.json({data: response.postData}, {status: 200});
 
   } catch (error) {
-    console.error('did not add doc', error);
-    return NextResponse.json({error: 'error'});
+    console.error('did not add doc\n\n', error);
+    return NextResponse.json({error: 'error'}, {status: 500});
   }
 }

@@ -2,14 +2,10 @@
 import React, { useEffect, useState } from "react";
 import HomeWidget from "./widgets/home/homeWidget";
 import styles from "./styles.module.css";
-import SettingsButton from "../../UI/settingsButton/settingsButton";
 import { DataType } from "../../../types/types";
-import Search from "../controlBar/search/search";
 import PlayWidget from "./widgets/play/playWidget";
 import ControlBar from "../controlBar/control";
-import { sidebarHover } from "../../../functions/jsResponsive/sidebars/hoverOver";
-import QueueCard from "../../UI/queueCard/queueCard";
-import { useFormState } from "react-dom";
+import { sidebarHover, sidebarNormal } from "../../../functions/jsResponsive/sidebars/hoverOver";
 
 const MainComp = (data: { data: DataType }) => {
   const [sidebarState, setSidebarState] = useState<boolean>(false);
@@ -20,8 +16,13 @@ const MainComp = (data: { data: DataType }) => {
   const changeSidebarState = () => {
     if (sidebarState === false) {
       setSidebarState(true);
+      sidebarNormal(true)
+      console.log("something");
     } else {
       setSidebarState(false);
+      sidebarNormal(false)
+      console.log("something else");
+
     }
   };
 
@@ -45,6 +46,7 @@ const MainComp = (data: { data: DataType }) => {
             <button onClick={() => setWidget(<PlayWidget data={data.data} />)}>
               PlayWidget
             </button>
+            <button onClick={changeSidebarState}>Queue Sidebar</button>
           </div>
           {widget}
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import dragula from "dragula";
 import QueueCard from "../../../UI/queueCard/queueCard";
 import { DataType } from "../../../../types/types";
+import "dragula/dist/dragula.css";
 
 type data = {
   url: string;
@@ -51,16 +52,20 @@ const Queue = ({ data }: { data: data }) => {
 
       drake.on("drop", () => {
         const container = cardLayout.current;
+
+        // const updatedTracks = Array.from(container.children).map((item) => {
+        //   const index = parseInt(item.getAttribute("data-index") || "0", 10);
+        //   console.log(index);
+        //   return tracks[index] || null;
+        // });
+        
         if (container) {
           const items = Array.from(container.children).map((item, index) => {
             const num = parseInt(item.getAttribute("data-index") || "0", 10);
-            const updatedItem = {
-              ...arrayData[num],
-              index,
-            };
+            const updatedItem = {...arrayData[num]}
             return updatedItem;
           });
-          console.log("items", items);
+          // console.log("items", items);
           setArrayData(items);
         }
       });
@@ -72,9 +77,7 @@ const Queue = ({ data }: { data: data }) => {
   if (!data) {
     return (
       <>
-        <div
-          style={{ width: "100%", justifyContent: "center", display: "flex" }}
-        >
+        <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
           There is no Queue!
         </div>
       </>
@@ -84,10 +87,7 @@ const Queue = ({ data }: { data: data }) => {
   return (
     <>
       <div ref={cardLayout}>
-        {data
-          .slice()
-          .sort((a, b) => a.index - b.index)
-          .map((queue, i) => (
+        {data.map((queue, i) => (
             <div data-index={i} key={i}>
               <QueueCard data={queue} />
             </div>

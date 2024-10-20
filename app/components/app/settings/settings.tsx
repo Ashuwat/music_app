@@ -16,25 +16,15 @@ const SettingsPage: React.FC<Data> = (
         <div className={styles.inner}>
           <pre>
             <h1>{data.data.groupCode}</h1>
-            {`asdkjlfhas
-fasd
-fasdf
-sadf
-sdaf
-sad
-fsa
-afdsjlkfsadf
-sdajlkfkhlkasdf
-asdfsdafasdf
-asdfsdafasdfsdafsadfasd
-fsadfsdaf
-dsafsadfsadf
-sadfdasf
-asdfsdafasdf
-asdf
-asdfsdafasdfsdafsadfasd
-asdfsdafasdfsdafsadfasd
-async function asdf`}
+            {`
+            Used just for testing purposes
+            Going to be filled up with profile related things
+            Group Settings
+            Etc.
+
+
+            Have fun!
+            `}
           </pre>
           <SettingsButton />
         </div>

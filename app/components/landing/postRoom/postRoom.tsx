@@ -8,7 +8,7 @@ const PostRoom = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     username: "",
-    animatetype: "",
+    // animatetype: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,14 +41,14 @@ const PostRoom = () => {
           placeholder="username"
           required
         />
-        <input
+        {/* <input
           type="text"
           id="animatetype"
           value={formData.animatetype}
           onChange={handleChange}
           placeholder="Animate Type"
           required
-        />
+        /> */}
         <button type="submit">Submit</button>
       </form>
       <div>{data?.groupCode}</div>
