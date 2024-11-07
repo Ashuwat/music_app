@@ -49,18 +49,20 @@ const TaskBar = ({ data }: { data: DataType }) => {
       >
         <button onClick={moveEntire}>asdf</button>
         <div className={styles.taskbar}>
-          <div className={styles.percent25}>{/* <MusicSlider /> */}</div>
+          <div className={styles.percent25}>
+            <MusicSlider play={data.play}/>
+          </div>
           <div className={styles.percent50}>
             <div className={styles.playBar}>
               <LoopButton />
               <BackButton data={data} />
-              <PlayButton />
+              <PlayButton play={data.play}/>
               <SkipButton data={data} />
               <LoopButton />
             </div>
           </div>
           <div className={styles.percent25}>
-            <button onClick={getDuration}>Get Duration of Song</button>
+            <button onClick={getDuration}>Get Duration of Songe</button>
             <p>{`${Math.floor(currentDuration/60)}: ${currentDuration%60} sec`}</p>
           </div>
         </div>

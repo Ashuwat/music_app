@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-const MusicSlider = (play: boolean) => {
+const MusicSlider = (play: {play: boolean}) => {
   const [time, setTime] = useState<number>(0);
   function changeInput(event: React.ChangeEvent<HTMLInputElement>) {
     setTime(Number(event.target.value));
-    return Number(event.target.value);
   }
   
   //helper function to post data to firestore

@@ -11,7 +11,7 @@ export type DataType = {
         artists: string;
         index: number;
     }[],
-
+    play: boolean,
     groupCode: string,
     username: string
 }

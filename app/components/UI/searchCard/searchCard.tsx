@@ -44,13 +44,13 @@ const Card = ({
     <>
       <div className={styles.card} key={data.id}>
         <div className={styles.image}>
-          <Image
+          {/* <Image
             style={{ borderRadius: "10px" }}
             src={data.album.images[0].url}
             alt={'N/A Image'}
             width={50}
             height={50}
-          />
+          /> */}
         </div>
         <div style={{ flexDirection: "column", width: "90%" }}>
           <b>{data.name}</b>
